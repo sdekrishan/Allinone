@@ -60,15 +60,15 @@ function App() {
           type:"React"
           },
           {
-            link:"https://storied-meerkat-f3c144.netlify.app/",//9
+            link:"https://mock7-dun.vercel.app/",//9
           img:images.mock7,
           github:"",
           name:"KStocks",
           type:"javascript"
           },
           {
-            link:"https://storied-meerkat-f3c144.netlify.app/",//10
-            img:"",
+            link:"https://mock8-gilt.vercel.app/",//10
+            img:images.mock8,
             github:"",
             name:"Weather Forecast",
             type:"javascript"
