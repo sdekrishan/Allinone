@@ -10,5 +10,6 @@ import tictac from '../assets/tictac.png';
 import library from '../assets/library.png';
 import mock7 from '../assets/mock7.png'
 import mock8 from '../assets/mock8.png'
-
-export default {mock1,mock2,mock3,mock4,pokemon,weather,social,snake,tictac,library,mock7,mock8}
+import mock9 from '../assets/mock9.png'
+import youtube from '../assets/youtube.png'
+export default {mock1,mock2,mock3,mock4,pokemon,weather,social,snake,tictac,library,mock7,mock8,mock9,youtube}
