@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/blogs.css" />
+  </head>
+  <body>
+    <nav id="nav">
+      <h2>Our Social Media</h2>
+      <a href="index.html">Sign Up</a>
+      <a href="signin.html">Sign In</a>
+      <a href="blogs.html">Blogs</a>
+      <a href="leaderboard.html">LeaderBoard</a>
+  </nav>
+    <div id="filter_div">
+      <input type="text" id="search" oninput="handleInput(event)" />
+      <select name="" id="filter">
+        <option value="">Filter By Category</option>
+        <option value="Business">Business</option>
+        <option value="Tech">Tech</option>
+        <option value="LifeStyle">LifeStyle</option>
+        <option value="Entertainment">Entertainment</option>
+      </select>
+      <select name="" id="sort">
+        <option value="">Sort By Date</option>
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+      </select>
+      <button id="add_blog_page">Add Blog</button>
+      <button onclick="gotoboard()" id="leaderboard-btn">Go to LeaderBoard</button>
+    </div>
+    <div id="blogs__container"></div>
+    <div id="post_edit_modal">
+      <textarea name="" id="edit_content" cols="30" rows="10"></textarea>
+
+      <button id="editPostButton">Edit Blog</button>
+      <button id="closeEditPostButton">close</button>
+    </div>
+    <div id="comment_modal">
+      <textarea name="" id="comment_area" cols="30" rows="5"></textarea>
+      <button id="post_comment">Comment</button>
+      <button id="close_comment">Close</button>
+    </div>
+    <div id="pagination">
+ 
+    </div>
+  </body>
+  <script src="./scripts/blogs.js"></script>
+</html>

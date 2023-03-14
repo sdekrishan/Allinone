@@ -1,0 +1,18 @@
+.poke_card{
+    padding: 1rem;
+    width: 90%;
+    margin: 1rem auto;
+    text-align: left;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border:1px solid black;
+    border-radius: 10px;
+}
+.poke_list{
+    padding: 1rem;
+    width: 90%;
+    margin: 1rem auto;
+    text-align: left;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border:1px solid black;
+    border-radius: 10px;
+}

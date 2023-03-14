@@ -1,0 +1,135 @@
+body,html{
+    padding: 0;
+    margin:0;
+    background-color: #B1BCE6;
+}
+
+#nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    background-color: #9A86A4;
+    padding: .2rem;
+    color:white;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+#nav>a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.3rem;
+}
+form{
+    width: 30%;
+    padding: 2rem;
+    margin:1rem auto;
+    /* border:1px solid black; */
+    display: flex;
+    flex-direction: column;
+    background-color: lightblue;
+    border-radius: 1rem;
+}
+input,select{
+    height: 2.3rem;
+    padding-left: 10px;
+    border-radius: 1rem;
+    border:1px solid black;
+    margin-bottom: .4rem;
+}
+input:nth-child(5){
+    width: 50%;
+    margin-inline:auto;
+}
+#add_blog_page,#leaderboard-btn{
+    border:none;
+    border-radius: 10px;
+    padding:10px 14px;
+}
+#comment_modal{
+    display: none;
+    position: fixed;
+    top:50vh;
+    left:50vw;
+    transform: translate(-50%,-50%);
+    border:1px solid black;
+    padding: 1.5rem;
+    z-index: 2;
+    background-color: lightblue;
+}
+
+#post_edit_modal{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    display: none;
+    top:50vh;
+    left:50vw;
+    transform: translate(-50%,-50%);
+    border:1px solid black;
+    padding: 1.5rem;
+    z-index: 2;
+    background-color: lightblue;
+}
+
+#blogs__container{
+    width: 50%;
+    padding:1rem ;
+    margin-inline: auto;
+}
+#blogs__container > div{
+    border:1px solid black;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: #B7E5DD;
+}
+
+#blogs__container > div>div{
+    border:1px solid black;
+    width: fit-content;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: #F1F0C0;
+}
+#blogs__container>div>button{
+    border:0;
+    padding:10px 14px;
+    margin-right: .5rem;
+    border-radius: 10px;
+
+}
+
+.like_button{
+    background-color: rgb(218, 55, 55);
+    border:0px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    margin-right: 10px;
+    color:white;
+}
+
+.comment_btn{
+    background-color: rgb(39, 121, 39);
+    border:0px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    margin-right: 10px;
+    color:white;
+}
+#pagination{
+    width: fit-content;
+    margin-inline:auto; 
+    margin-bottom: 2rem;
+}
+#pagination>button{
+    border:1px solid black;
+    background-color: #9A86A4;
+    color: white;
+    font-size: 1.2rem;
+    padding: 1rem;
+    border-radius: 10px ;
+    margin-right: 10px;
+    
+}

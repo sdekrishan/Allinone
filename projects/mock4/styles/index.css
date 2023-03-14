@@ -1,0 +1,36 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    background-color: #0E8388;
+}
+#main{
+ padding: 1rem;
+ position: absolute;
+ top:50%;
+ left:50%;
+ transform: translate(-50%,-50%);
+ width: 25%;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+}
+button{
+    padding: 1rem 1.5rem;
+    font-size: 1.3rem;
+    border:0px;
+    border-radius: .8rem;
+    color:white
+}
+button:nth-child(1){
+    background-color: red;
+}
+button:nth-child(2){
+    background-color: cornflowerblue ;
+}
+h1{
+    text-align: center;
+    background-color: black;
+    padding: 1rem;
+    color:white;
+    margin-top: 0;
+}

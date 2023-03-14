@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <style>
+      /* All Your css for Home page goes here  */
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        background-image: linear-gradient(to right, lightgray, gray);
+      }
+      .nav {
+        background-color: black;
+        /* padding: 1rem; */
+        display: flex;
+        color: white;
+        align-items: center;
+        justify-content: space-evenly;
+        margin-bottom: 1rem;
+      }
+      .nav > a {
+        color: white;
+        font-size: 1.2rem;
+        text-decoration: none;
+      }
+      #menu-container {
+        width: 90%;
+        margin-inline: auto;
+        display: grid;
+        padding: 1rem;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+      }
+      .coffee_box {
+        border: 1px solid black;
+        height: 600px;
+        line-height: normal;
+        text-align: center;
+        padding: 10px;
+        background-image: linear-gradient(to top, lightyellow, orange);
+        border-radius: 10px;
+      }
+      .coffee_box > img {
+        width: 100%;
+        height: 240px;
+        border-radius: 10px;
+      }
+      .coffee_box > button {
+        border: 0px;
+        background-color: lightblue;
+        border-radius: 10px;
+        padding: 10px 16px;
+      }
+      .coffee_box > div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .coffee_desc {
+        /* height: 200px; */
+        overflow: hidden;
+      }
+      #filter > input {
+        height: 2rem;
+        border-radius: 10px;
+        border: 1px solid gray;
+        margin-left: 0.5rem;
+        padding-left: 10px;
+      }
+      #filter > button {
+        padding: 10px 16px;
+        font-size: 1rem;
+        background-color: lightskyblue;
+        border: 1px dotted black;
+        border-radius: 10px;
+      }
+      #sort {
+        height: 2rem;
+        border-radius: 10px;
+        border: 1px solid gray;
+        margin-left: 0.5rem;
+        padding-left: 10px;
+        background-color: lightgreen;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="nav">
+      <h1>Web Coffee Shop Menu</h1>
+      <a href="./index.html">Home</a>
+      <a href="./order.html">Ordered</a>
+    </div>
+    <div id="filter">
+      <input type="number" id="lower" placeholder="Enter lower price" />
+      <input type="number" id="upper" placeholder="Enter upper price" />
+      <button id="filter-btn">Filter</button>
+    </div>
+    <select id="sort">
+      <option value="">Sort By Price</option>
+      <option value="asc">Ascending</option>
+      <option value="desc">Descending</option>
+    </select>
+    <h1 id="alert"></h1>
+    <div id="menu-container">
+      <!-- Here Append All the Items  -->
+    </div>
+  </body>
+  <script>
+    // All your JS code for Home Page goes here
+    const url = `https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-coffee`;
+
+    let cart = JSON.parse(localStorage.getItem("buy")) || [];
+
+    let menu_container = document.querySelector("#menu-container");
+    let filter_button = document.querySelector("#filter-btn");
+    let sort_button = document.querySelector("#sort");
+    let lower_value = document.querySelector("#lower");
+    let upper_value = document.querySelector("#upper");
+
+    //filtering section
+
+    filter_button.addEventListener("click", async function () {
+      let response = await fetch(url);
+      let data = await response.json();
+
+      let filter_data = data.data.filter((el) => {
+        if (lower_value.value && upper_value.value) {
+          return el.price <= upper_value.value && el.price >= lower_value.value;
+        } else if (lower_value.value) {
+          return el.price >= lower_value.value;
+        } else {
+          return el.price <= upper_value.value;
+        }
+      });
+      display(filter_data);
+    });
+
+    //sorting functionality
+    sort_button.addEventListener("change", function (event) {
+      if (event.target.value === "desc") {
+        get_coffee(
+          `https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-coffee?sort=price&order=desc`
+        );
+      } else if (event.target.value === "asc") {
+        get_coffee(
+          `https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-coffee?sort=price&order=asc`
+        );
+      } else {
+        get_coffee(url);
+      }
+    });
+
+    async function get_coffee(url) {
+      let response = await fetch(url);
+      data = await response.json();
+      console.log(data.data);
+      display(data.data);
+    }
+
+    get_coffee(url);
+
+    function display(arr) {
+      menu_container.innerHTML = null;
+
+      arr.forEach((el, ind) => {
+        let coffee_box = document.createElement("div");
+        let coffee_img = document.createElement("img");
+        let coffee_title = document.createElement("h2");
+        let coffee_desc = document.createElement("p");
+        let coffee_price = document.createElement("p");
+        let coffee_ing_box = document.createElement("div");
+        let buy_button = document.createElement("button");
+
+        coffee_box.setAttribute("class", "coffee_box");
+        coffee_desc.setAttribute("class", "coffee_desc");
+        coffee_img.setAttribute("src", el.image);
+        coffee_title.innerText = el.title;
+        coffee_desc.innerText = el.description;
+        coffee_price.innerText = `Price : ${el.price}`;
+        buy_button.innerText = "Buy";
+
+        el.ingredients.map((single_ing, ind) => {
+          let ing_para = document.createElement("p");
+          ing_para.innerText = single_ing;
+          coffee_ing_box.append(ing_para);
+        });
+
+        //add to cart functionality;
+
+        buy_button.addEventListener("click", () => {
+          let check = cart.filter((elem) => {
+            return el.id === elem.id;
+          });
+
+          if (check.length === 0) {
+            cart.push({ ...el, quantity: 1 });
+            localStorage.setItem("buy", JSON.stringify(cart));
+            document.querySelector("#alert").innerText =
+              "Successfully Placed Order";
+          } else {
+            document.querySelector("#alert").innerText = "Already Placed Order";
+          }
+        });
+        coffee_box.append(
+          coffee_img,
+          coffee_title,
+          coffee_ing_box,
+          coffee_desc,
+          coffee_price,
+          buy_button
+        );
+        menu_container.append(coffee_box);
+      });
+    }
+  </script>
+</html>

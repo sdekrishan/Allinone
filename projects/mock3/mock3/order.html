@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Page</title>
+    <style>
+      /* All Your css for Order page goes here  */
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        background-image: linear-gradient(to right, lightgray, gray);
+      }
+      .nav {
+        background-color: black;
+        /* padding: 1rem; */
+        display: flex;
+        color: white;
+        align-items: center;
+        justify-content: space-evenly;
+        margin-bottom: 1rem;
+      }
+      .nav > a {
+        color: white;
+        font-size: 1.2rem;
+        text-decoration: none;
+      }
+      #order-container {
+        width: 90%;
+        margin-inline: auto;
+        display: grid;
+        padding: 1rem;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+      }
+      .coffee_box {
+        border: 1px solid black;
+        height: 600px;
+        line-height: normal;
+        text-align: center;
+        padding: 10px;
+        background-image: linear-gradient(to top, lightyellow, orange);
+        border-radius: 10px;
+      }
+      .coffee_box > img {
+        width: 100%;
+        height: 240px;
+        border-radius: 10px;
+      }
+      .coffee_box > button,
+      span {
+        border: 0px;
+        background-color: lightblue;
+        border-radius: 10px;
+        margin-right: 10px;
+        padding: 10px 16px;
+      }
+      .coffee_box > div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      #cupon > input {
+        height: 2rem;
+        border-radius: 10px;
+        border: 1px solid gray;
+        margin-left: 0.5rem;
+        padding-left: 10px;
+      }
+      #cupon > button {
+        padding: 10px 16px;
+        font-size: 1rem;
+        background-color: lightskyblue;
+        border: 1px dotted black;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <h1>Web Coffee Shop Menu</h1>
+      <a href="./index.html">Home</a>
+      <a href="./order.html">Ordered</a>
+    </div>
+    <h1 id="total">
+      Your total order value is :- <span id="order-total">0</span>
+    </h1>
+    <div id="cupon">
+      <input type="text" placeholder="Masai30" />
+      <button>Add Cupon</button>
+    </div>
+    <div id="order-container">
+      <!-- Here Append All the Order Cards here-->
+    </div>
+  </body>
+  <script>
+    // All your JS code for Order Page goes here
+    let cart = JSON.parse(localStorage.getItem("buy"));
+    let order_container = document.querySelector("#order-container");
+    let total = document.querySelector("#order-total");
+    let solid_check = true;
+    let cupon_div = document.querySelector("#cupon");
+
+    //display funciton for cart
+
+    function cart_display(arr) {
+      order_container.innerHTML = null;
+      total.innerText = arr.reduce((ac, el) => {
+        return ac + el.price * el.quantity;
+      }, 0);
+
+      arr.forEach((el, ind) => {
+        let coffee_box = document.createElement("div");
+        let coffee_img = document.createElement("img");
+        let coffee_title = document.createElement("h2");
+        let coffee_desc = document.createElement("p");
+        let coffee_price = document.createElement("p");
+        let coffee_ing_box = document.createElement("div");
+        let inc_button = document.createElement("button");
+        let dec_button = document.createElement("button");
+        let cancel_button = document.createElement("button");
+        let qty = document.createElement("span");
+
+        coffee_box.setAttribute("class", "coffee_box");
+        coffee_img.setAttribute("src", el.image);
+        coffee_title.innerText = el.title;
+        coffee_desc.innerText = el.description;
+        coffee_price.innerText = `Price : ${el.price}`;
+        cancel_button.innerText = "Cancel";
+        qty.innerText = el.quantity;
+        inc_button.innerText = "+";
+        dec_button.innerText = "-";
+
+        el.ingredients.map((single_ing, ind) => {
+          let ing_para = document.createElement("p");
+          ing_para.innerText = single_ing;
+          coffee_ing_box.append(ing_para);
+        });
+
+        //for cancelling the order
+
+        cancel_button.addEventListener("click", () => {
+          delete_coffee(ind);
+        });
+
+        //increase button functionality
+
+        inc_button.addEventListener("click", () => {
+          arr.map((per) => {
+            if (per.id === el.id) {
+              return el.quantity++;
+            }
+          });
+          localStorage.setItem("buy", JSON.stringify(arr));
+          cart_display(arr);
+        });
+
+        //decrease button functionality;
+
+        dec_button.addEventListener("click", () => {
+          arr.map((per) => {
+            if (per.id === el.id) {
+              if (el.quantity !== 1) {
+                return el.quantity--;
+              }
+            }
+          });
+
+          localStorage.setItem("buy", JSON.stringify(arr));
+          cart_display(arr);
+        });
+        
+        coffee_box.append(
+          coffee_img,
+          coffee_title,
+          coffee_ing_box,
+          coffee_desc,
+          coffee_price,
+          inc_button,
+          qty,
+          dec_button,
+          cancel_button
+        );
+        order_container.append(coffee_box);
+      });
+    }
+    cart_display(cart);
+    
+    //delete cart function
+    
+    function delete_coffee(ind) {
+      cart.splice(ind, 1);
+      localStorage.setItem("buy", JSON.stringify(cart));
+      cart_display(cart);
+    }
+
+    // Coupon Functionality;
+
+    cupon_div.children[1].addEventListener("click", () => {
+      if (solid_check && cupon_div.children[0].value === "Masai30") {
+        let all = cart.reduce((ac, el) => {
+          return ac + el.price * el.quantity;
+        }, 0);
+        all = Math.floor((all * 70) / 100);
+        total.innerText = all;
+      }
+      solid_check = false;
+    });
+
+  </script>
+</html>

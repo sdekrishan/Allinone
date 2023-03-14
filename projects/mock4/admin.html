@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/admin.css" />
+    <style></style>
+  </head>
+  <body>
+    <div id="form__div">
+      <button id="home">Home</button>
+      <form action="" id="form" onsubmit="handleAddBook(event)">
+        <input type="text" placeholder="Enter Book Name" id="name" />
+        <input type="text" placeholder="Enter Book Author" id="author" />
+        <select id="genre">
+          <option value="">Select Genre</option>
+          <option value="Tech">Tech</option>
+          <option value="Business">Business</option>
+          <option value="Fiction">Fiction</option>
+          <option value="History">History</option>
+          <option value="Science">Science</option>
+        </select>
+        <select id="edition">
+          <option value="">Select edition</option>
+          <option value="2020">2020</option>
+          <option value="2021">2021</option>
+          <option value="2022">2022</option>
+        </select>
+        <input type="text" placeholder="Enter Book Publisher" id="publisher" />
+        <input type="number" placeholder="Enter Book Cost" id="cost" />
+        <input type="submit" />
+      </form>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Author</th>
+          <th>Genre</th>
+          <th>Edition</th>
+          <th>Publisher</th>
+          <th>Cost</th>
+          <th>Borrowed status</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+
+    <div id="modal"></div>
+  </body>
+  <script>
+    let books_container = document.querySelector("#tbody");
+    let url = "https://mockfour-brown.vercel.app/books";
+    document.querySelector("#home").addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+    function handleAddBook(event) {
+      event.preventDefault();
+      let book_name = document.querySelector("#name").value;
+      let author = document.querySelector("#author").value;
+      let genre = document.querySelector("#genre").value;
+      let edition = document.querySelector("#edition").value;
+      let publisher = document.querySelector("#publisher").value;
+      let cost = document.querySelector("#cost").value;
+
+      fetch("https://mockfour-brown.vercel.app/books", {
+        method: "POST",
+        body: JSON.stringify({
+          id: Date.now(),
+          book_name,
+          author,
+          genre,
+          edition,
+          publisher,
+          cost,
+          borrowed: false,
+        }),
+        headers: {
+          "Content-type": "application/json",
+        },
+      })
+        .then((res) => get_books(url))
+        .catch((err) => console.log(err));
+    }
+
+    async function get_books(url) {
+      let response = await fetch(url);
+      let data = await response.json();
+      console.log(data);
+      display(data);
+    }
+
+    get_books(url);
+
+    function display(arr) {
+      books_container.innerHTML = null;
+
+      arr.forEach((book, ind) => {
+        let book_div = document.createElement("tr");
+        let book_img_col = document.createElement("td");
+        let book_img = document.createElement("img");
+        let book_name = document.createElement("td");
+        let book_author = document.createElement("td");
+        let book_genre = document.createElement("td");
+        let book_status = document.createElement("td");
+        let book_edit_button = document.createElement("td");
+        let book_delete_button = document.createElement("td");
+
+        let book_edition = document.createElement("td");
+
+        let book_publisher = document.createElement("td");
+        let book_cost = document.createElement("td");
+        let book_edit = document.createElement("button");
+        let book_delete = document.createElement("button");
+
+        book_img.setAttribute("src", "https://pngimg.com/d/book_PNG2111.png");
+        book_img_col.appendChild(book_img);
+        book_name.innerText = book.book_name;
+        book_author.innerText = book.author;
+        book_genre.innerText = book.genre;
+        book_edition.innerText = book.edition;
+        book_publisher.innerText = book.publisher;
+        book_cost.innerText = book.cost;
+        book_status.innerText = book.borrowed ? "Yes" : "No";
+        book_edit.innerText = "Edit";
+        book_delete.innerText = "Delete";
+        book_edit_button.appendChild(book_edit);
+        book_delete_button.appendChild(book_delete);
+        book_div.append(
+          book_img_col,
+          book_name,
+          book_author,
+          book_genre,
+          book_edition,
+          book_publisher,
+          book_cost,
+          book_status,
+          book_edit_button,
+          book_delete_button
+        );
+        books_container.append(book_div);
+
+        book_edit.addEventListener("click", () => {});
+        book_delete.addEventListener("click", () => {
+          fetch(`https://mockfour-brown.vercel.app/books/${book.id}`, {
+            method: "DELETE",
+            headers: {
+              "Content-type": "application/json",
+            },
+          })
+            .then((r) => get_books(url))
+            .catch((e) => console.log(e));
+        });
+      });
+    }
+  </script>
+</html>

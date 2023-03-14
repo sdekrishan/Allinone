@@ -1,0 +1,18 @@
+html,body{
+    margin:0;
+    padding:0;
+}
+
+#create>h1{
+    text-align: center;
+}
+form{
+    width: 40%;
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: column;
+}
+input,select{
+    height: 2rem;
+    margin-bottom: .5rem;
+}

@@ -1,0 +1,31 @@
+.paginate{
+margin: 1rem auto;
+
+}
+.paginate>button{
+    padding: 10px 14px;
+    border-radius:12px;
+    border:1px solid black;
+    background-color: lightblue;
+    
+}
+.paginate>span{
+    margin-left: .5rem;
+    margin-right: .5rem;
+    font-weight: 500;
+}
+input{
+    padding: 1rem;
+    margin: 1rem auto;
+    border-radius: 12px;
+    border:1px solid black;
+
+}
+button{
+    margin-left: 1rem;
+    padding: 10px 12px ;
+    border:1px solid black;
+    background-color: lightgreen;
+    border-radius: 10px;
+
+}

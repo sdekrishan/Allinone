@@ -10,12 +10,17 @@ import {
   flexbox,
   Grid,
   Heading,
+  IconButton,
   Image,
+  Link,
   Stack,
   Text,
+  useColorMode,
 } from "@chakra-ui/react";
 import {BsGithub} from 'react-icons/bs'
 import {AiFillEye} from 'react-icons/ai'
+import {MdDarkMode} from 'react-icons/md'
+import {CiSun} from 'react-icons/ci'
 import "./App.css";
 import { images } from "./Container/index";
 function App() {
@@ -129,6 +134,7 @@ function App() {
       type: "Javascript",
     },
   ];
+  const { colorMode, toggleColorMode } = useColorMode()
   return (
     <>
       <Text
@@ -141,17 +147,21 @@ function App() {
       >
         Welcome to ProDozen
       </Text>
+      <IconButton position={'absolute'} top='5rem' right={'1rem'} zIndex='overlay'  onClick={toggleColorMode} colorScheme={colorMode==='dark' ?'orange' :"blackAlpha"} icon={colorMode==='dark' ?<CiSun/> :<MdDarkMode/>}>
+        
+      </IconButton>
       <Grid
+      mt='4rem'
         className="App"
         templateColumns={"repeat(3,1fr)"}
         gap="1rem"
         flexWrap="wrap"
-        border="1px solid black"
+        
       >
         {data &&
           data.map((el, ind) => {
             return (
-              <Card maxW="sm">
+              <Card maxW="sm" border='1px solid lightgray'   >
                 <CardBody>
                   <Image
                     src={el.img}
@@ -165,7 +175,7 @@ function App() {
                   
                     <Flex wrap={'wrap'} justifyContent='space-evenly' >
                       {el.tech.map((e,i)=>(
-                        <Text p='10px 14px' mb='10px' alignContent={'space-evenly'}  border='1px solid black' borderRadius='1rem' key={i}>
+                        <Text p='10px 14px' mb='10px' alignContent={'space-evenly'}  border={colorMode === 'light' ? '1px solid black' : '1px solid white'} borderRadius='1rem' key={i}>
                           {e}
                         </Text>
                       ))}
@@ -178,9 +188,11 @@ function App() {
                     <Button variant="solid" colorScheme="blue" rightIcon={<BsGithub/>}>
                       Github
                     </Button>
+                    <Link href={el.link} target='_blank' textDecoration={'none'}>
                     <Button  colorScheme="green" rightIcon={<AiFillEye/>}>
                       Go live
                     </Button>
+                    </Link>
                   </ButtonGroup>
                 </CardFooter>
               </Card>

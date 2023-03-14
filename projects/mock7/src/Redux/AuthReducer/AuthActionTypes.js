@@ -1,0 +1,4 @@
+export const LOGIN_RQUEST = 'LOGIN_REQUEST'
+export const LOGIN_SUCCESS = 'LOGIN_RSUCCESS'
+export const LOGIN_ERROR = 'LOGIN_ERROR'
+export const ADMIN_LOGIN = 'ADMIN_LOGIN'

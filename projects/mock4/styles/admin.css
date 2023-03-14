@@ -1,0 +1,79 @@
+html,
+body {
+        margin: 0;
+        padding: 0;
+        background-color: #0E8388;
+      }
+      #books__container {
+        width: 90%;
+        margin: 1rem auto;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+      }
+
+      form {
+        width: 30%;
+        margin-inline: auto;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        background-color: #CBE4DE;
+        border-radius: 10px;
+        margin-top: 1rem;
+      }
+      input,
+      select {
+        height: 2rem;
+        padding-left: 10px;
+        margin-bottom: 0.5rem;
+        border-radius: 10px;
+        border: 1px solid gray;
+      }
+      tbody > tr > td:nth-child(1) > img {
+        width: 200px;
+      }
+      #modal {
+        width: 400px;
+        display: none;
+        height: fit-content;
+        padding: 1rem;
+        position: fixed;
+        top: 50vh;
+        left: 50vw;
+        transform: translate(-50%, -50%);
+        background-color: lightblue;
+      }
+      table {
+        width: 100%;
+        padding: 1rem;
+        margin: 0.5rem auto;
+      }
+      th {
+        padding: 10px 20px;
+        background-color: #CBE4DE;
+        border-radius: 10px;
+      }
+      td {
+        padding: 1rem;
+        background-color: lightblue;
+        border-radius: 10px;
+      }
+      table td > button {
+        background-color: #2E4F4F;
+        border: 0px;
+        color:white;
+        padding: 10px 14px;
+        border-radius: 10px;
+      }
+      input[type='submit']{
+        background-color: #0E8388;
+        color:white;
+      }
+      #home {
+        background-color: #CBE4DE ;
+        border-radius: 10px;
+        padding: 10px 14px;
+        border: 1px solid gray;
+        margin-top: 1rem;
+        margin-left: 1rem;
+      }

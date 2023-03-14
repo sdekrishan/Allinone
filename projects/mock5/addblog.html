@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/addblog.css">
+</head>
+<body>
+    <nav id="nav">
+        <h2>Our Social Media</h2>
+        <a href="index.html">Sign Up</a>
+        <a href="signin.html">Sign In</a>
+        <a href="blogs.html">Blogs</a>
+        <a href="leaderboard.html">LeaderBoard</a>
+    </nav>
+    <button class="goto" onclick="handleBlog()">Go To Blogs</button>
+    <button class="goto" onclick="handleLeaderBoard()">Go To LeaderBoard</button>
+        <form action="" id="form" onsubmit="handleSubmit(event)">
+            <input type="text" disabled id="name">
+            <input type="text" id="title" >
+            <textarea name="" id="content" cols="30" rows="10"></textarea>
+            
+            <select name="" id="category">
+                <option value="">Select Category</option>
+            <option value="Business">Business</option>
+            <option value="Tech">Tech</option>
+            <option value="LifeStyle">LifeStyle</option>
+            <option value="Entertainment">Entertainment</option>
+            </select>
+            <input type="date" id="date" >
+            <input type="submit" value="Post Blog" >
+        </form>
+</body>
+<script src="./scripts/addblog.js"></script>
+</html>
