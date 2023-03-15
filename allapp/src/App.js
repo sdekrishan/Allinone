@@ -172,15 +172,14 @@ function App() {
       <Grid
       mt='4rem'
         className="App"
-        templateColumns={"repeat(3,1fr)"}
+        templateColumns={{base:"repeat(1,1fr)",sm:"repeat(2,1fr)",md:"repeat(3,1fr)"}}
         gap="1rem"
         flexWrap="wrap"
-        
       >
         {data &&
           data.map((el, ind) => {
             return (
-              <Card maxW="sm" border='1px solid lightgray'   >
+              <Card maxW="sm" border='1px solid lightgray' key={ind} marginInline='auto' >
                 <CardBody>
                   <Image
                     src={el.img}
