@@ -203,9 +203,11 @@ function App() {
                 <Divider />
                 <CardFooter>
                   <ButtonGroup spacing="2" marginInline={'auto'}>
+                    <Link href={el.github} target='_blank' textDecoration={'none'}>
                     <Button variant="solid" colorScheme="blue" rightIcon={<BsGithub/>}>
                       Github
                     </Button>
+                    </Link>
                     <Link href={el.link} target='_blank' textDecoration={'none'}>
                     <Button  colorScheme="green" rightIcon={<AiFillEye/>}>
                       Go live
