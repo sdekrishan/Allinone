@@ -26,6 +26,15 @@ import { images } from "./Container/index";
 function App() {
   const data = [
     {
+      link: "https://client-kirqgqs0q-sdekrishan.vercel.app/", //1
+      img: images.playo,
+      desc: "Playo is a event management app where user can add event, join an event and they have the ownership or their events so that they can approve or reject a user's request to join their event.",
+      github: "https://github.com/sdekrishan/playo-take-live",
+      name: "Playo",
+      tech: ['React.js','Chakra UI','Jsx','Redux',"Express","Node.js","MongoDB"],
+      type: "React",
+    },
+    {
       link: "https://singular-treacle-950e2b.netlify.app/", //1
       img: images.mock1,
       desc: "In this app you can get more and more data when you hit the bottom every time. Simple project made with Html, Css, Javascript.",

@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <Flex mb='2rem' padding='1rem' bgColor={'black'} color='white' justifyContent={'space-around'}>
-    <Text   fontSize={'2xl'}>Welcome to KKP's Quiz</Text>
+    <Text fontSize={'2xl'}>Welcome to KKP's Quiz</Text>
     <Flex w='50%' justifyContent={'space-evenly'} alignItems='center'>
       <Link to='/'>Home</Link>
         <Link to='/quiz'>Quiz</Link>
