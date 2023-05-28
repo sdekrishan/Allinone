@@ -15,4 +15,5 @@ import youtube from '../assets/youtube.png'
 import shoe from '../assets/shoe.png'
 import blog from '../assets/blog.png'
 import playo from "../assets/playo.png"
-export default {mock1,playo,mock2,mock3,mock4,pokemon,weather,social,snake,tictac,library,mock7,mock8,mock9,youtube,shoe,blog}
+import trav2 from "../assests/trav2.png"
+export default {mock1,playo,mock2,mock3,mock4,pokemon,weather,social,snake,tictac,library,mock7,mock8,mock9,youtube,shoe,blog,trav2}
