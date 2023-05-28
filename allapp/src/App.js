@@ -26,6 +26,15 @@ import { images } from "./Container/index";
 function App() {
   const data = [
     {
+      link: "https://travelopia-blush.vercel.app/", //1
+      img: images.trav2,
+      desc: " Travels expert Travelopia provides unique travel experiences. In this app user can book the trip by filling a form and also can see other's people bookings in the Dashboard.",
+      github: "https://github.com/sdekrishan/travelopia/tree/main",
+      name: "Playo",
+      tech: ['React.js','Chakra UI',"Cypress, 'Jsx','Redux',"Express","Node.js","MongoDB"],
+      type: "React",
+    },
+    {
       link: "https://client-kirqgqs0q-sdekrishan.vercel.app/", //1
       img: images.playo,
       desc: "Playo is a event management app where user can add event, join an event and they have the ownership or their events so that they can approve or reject a user's request to join their event.",
